@@ -41,7 +41,7 @@ if [ "$1" = 'postgres' ]; then
 		# Create user
 		echo "Creating User $PG_USER with password $PG_PASSWORD"
 		# "$PG_BIN/psql" --command "CREATE USER ${PG_USER} WITH LOGIN SUPERUSER PASSWORD '${PG_PASSWORD}';"
-		echo "CREATE USER ${PG_USER} WITH SUPERUSER PASSWORD '${PG_PASSWORD}';" |
+		echo "CREATE USER ${PG_USER} WITH SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN PASSWORD '${PG_PASSWORD}';" |
 		      sudo -u postgres -H ${PG_BIN}/postgres --single \
 			-D ${PG_DATADIR} -c config_file=${PG_CONFIG}/postgresql.conf >/dev/null
 	fi
